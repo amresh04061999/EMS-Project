@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-aside',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./aside.component.scss']
 })
 export class AsideComponent {
-
+  flag: boolean = true;
 }

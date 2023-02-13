@@ -1,1 +1,80 @@
-<p>aside works!</p>
+<!-- aside wrapper -->
+<div class="d-flex h-100">
+    <!-- menu -->
+  <aside class="d-flex flex-column align-items-center">
+    <div class="pb-5 mt-2">
+      <img src="./../../../assets/images/icon-image.jpg" alt="logo-image" />
+    </div>
+    <ul class="nav">
+      <li class="nav-item p-3">
+        <a href="javascript:void(0)" class="nav-link">
+          <span class="bi bi-list fs-4"></span
+        ></a>
+      </li>
+      <li class="nav-item p-3">
+        <a class="nav-link">
+          <span class="bi bi-people fs-4" (click)="flag = !flag"></span
+        ></a>
+      </li>
+      <li class="nav-item p-3">
+        <a href="javascript:void(0)" class="nav-link">
+          <span class="bi bi-window-plus fs-4"></span
+        ></a>
+      </li>
+      <li class="nav-item p-3">
+        <a href="javascript:void(0)" class="nav-link">
+          <span class="bi bi-fingerprint fs-4"></span
+        ></a>
+      </li>
+      <li class="nav-item p-3">
+        <a href="javascript:void(0)" class="nav-link">
+          <span class="bi bi-gear fs-4"></span
+        ></a>
+      </li>
+    </ul>
+  </aside>
+  <!-- Sub-menu -->
+  <div 
+    class="sub-menu d-flex flex-column  bg-success h-100 "
+    [ngClass]="flag ? 'd-none' : 'd-block'"
+  >
+    <div class="d-flex sub-menu-header">
+     <div class="submenu-icon-header w-20px h-20px rounded-circle d-flex align-items-center justify-content-center pe-1">
+          <span class="bi bi-chevron-left text-primary  "></span>
+      </div>
+        <h6 class="ps-2">Manage Employee</h6>
+    </div>
+  <ul class="nav pt-3">
+    <li class="nav-item p-3">
+      <a href="javascript:void(0)" class="nav-link d-flex align-items-center">
+        <span class="bi bi-plus-square fs-6 pe-3"></span>
+        <span class="fs-6">Add New employee</span>
+    </a>
+    </li>
+    <li class="nav-item p-3">
+        <a href="javascript:void(0)" class="nav-link d-flex align-items-center">
+          <span class="bi bi-cast fs-6 pe-3"></span>
+          <span class="fs-6">Projects</span>
+      </a>
+      </li>
+      <li class="nav-item p-3">
+        <a href="javascript:void(0)" class="nav-link d-flex align-items-center">
+          <span class="bi bi-people fs-6 pe-3"></span>
+          <span class="fs-6">Teams</span>
+      </a>
+      </li>
+      <li class="nav-item p-3">
+        <a href="javascript:void(0)" class="nav-link d-flex align-items-center">
+          <span class="bi bi-coin fs-6 pe-3"></span>
+          <span class="fs-6">Fanacial</span>
+      </a>
+      </li>
+      <li class="nav-item p-3">
+        <a href="javascript:void(0)" class="nav-link d-flex align-items-center">
+          <span class="bi bi-book-half fs-6 pe-3"></span>
+          <span class="fs-6">Reports</span>
+      </a>
+      </li>
+  </ul>
+</div>
+</div>

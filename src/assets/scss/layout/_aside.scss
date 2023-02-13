@@ -1,0 +1,31 @@
+// main-aside
+aside{
+    .nav{
+        .nav-item{
+            transition: 0.2s ease-in-out;
+            &:hover{
+                 background-color:$success;
+                 
+            }
+        }
+    } 
+}
+// sub-menu open in click
+.sub-menu{
+    .sub-menu-header{
+        padding: 15px;
+        background-color:$hover-primary;
+        .submenu-icon-header{
+            background-color:$hover-secondry;
+        }
+    }
+    .nav{
+        .nav-item{
+            transition: 0.1s ease-in-out;
+            &:hover{
+                 background-color:$hover-primary;
+                 
+            }
+        }
+    }
+}

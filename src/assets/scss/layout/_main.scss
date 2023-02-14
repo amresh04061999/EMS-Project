@@ -1,3 +1,26 @@
 main{
-    
+    .row {
+        .card{
+            .profile-image{
+                border: 1px solid #80808085;
+                border-radius: 5px;
+                
+              .image-profile{
+                &:hover{
+                    background-color: red;
+                }
+              }
+            }
+            cursor: pointer;
+            box-shadow: -5px 5px 5px -1px #f5f5f5;
+            transition: all 0.1s ease-in-out;
+            &:hover{
+                background:$hover-primary;
+                td,th{
+                    border-color: rgba(165, 165, 165, 0.637);
+                }
+
+            }
+        }
+    }
 }

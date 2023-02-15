@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 export class OverlayService {
   overlayRef: any;
   constructor(private overlay:Overlay) { 
-
   }
   /**
    * Open a custom component in an overlay
@@ -16,8 +15,6 @@ export class OverlayService {
     const positionStrategy = this.overlay
       .position()
       .global()
-      .centerVertically()
-      .centerHorizontally()
     // Create the overlay with customizable options
     this.overlayRef = this.overlay.create({
       positionStrategy,
@@ -26,7 +23,9 @@ export class OverlayService {
     });
     const portal = new ComponentPortal(component);
     const instance = this.overlayRef.attach(portal);
-
+    this.overlayRef.backdropClick().subscribe(()=>{
+      this.overlayRef.detach()
+    })
     return instance;
   }
   close() {

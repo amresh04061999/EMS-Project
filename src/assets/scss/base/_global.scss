@@ -33,12 +33,18 @@ body{
 .h-200px{
     height: 200px;
 }
+// form profile image
+.w-120px{
+    width: 120px;
+}
+.h-120px{
+    height: 120px;
+}
  
 // Overlay backdrop styling
 .overlay-backdrop {
     background-color: rgba(0, 0, 0, 0.5);
   }
-  
   // Overlay panel styling
   .overlay-panel {
     display: flex;

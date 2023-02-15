@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OverlayService } from 'src/app/core/services/overlay.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./employee-form.component.scss']
 })
 export class EmployeeFormComponent {
+  constructor(private closeOverlay:OverlayService) { 
 
+  }
+  public close(){
+    this.closeOverlay.close()
+
+  }
 }

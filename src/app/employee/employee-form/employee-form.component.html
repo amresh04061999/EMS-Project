@@ -1,20 +1,158 @@
-
-<div class="bg-white">
-    <form >
-        <div class="mb-3">
-            <label class="form-label" for="inputEmail">Email</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-        </div>
-        <div class="mb-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="checkRemember">
-                <label class="form-check-label" for="checkRemember">Remember me</label>
+<div class="bg-white h-100 w-25 position-absolute end-0">
+    <div class="d-flex justify-content-between align-items-center  bg-info px-3 py-2">
+        <h5 class="text-uppercase fw-bold">Employee Details</h5>
+        <span class="bi bi-x-circle fs-2 text-primary" (click)="close()"></span>
+    </div>
+    <form class="p-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex justify-content-center align-items-center ">
+                   
+                    <label for="image-upload">
+                        <div class=" position-relative">
+                            <div class="profile-image w-120px h-120px d-flex justify-content-centern overflow-hidden rounded-circle ">
+                                <img src="./../../../assets/images/profile-image.png" alt="profile-icon" class="img-fluid image object-fit-cover ">
+                               
+                             <div class="middle">
+                                 <div class="text text-nowrap text-dark">Upload Image</div>
+                               </div>
+                         </div>
+                         <img src="./../../../assets/images/plush-img.jpg" class="w-20px h-20px  position-absolute rounded-4 plush-image">
+                        </div>
+                   
+                </label>
+                    <input type="file" class="d-none" id="image-upload">
+                  
+                </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <div class="my-2 border-bottom border-secondary ">
+            <h6 class="text-uppercase">personal Details</h6>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">FirstName</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter FirstName">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">LastName</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter lastName">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">DOB</label>
+                    <input type="date" class="form-control" id="inputEmail" placeholder="Enter FirstName">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="form-label fw-bold" for="inputEmail">Gender</label>
+                <div class="d-flex">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                         Male
+                        </label>
+                      </div>
+                      <div class="form-check ms-2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                        Female
+                        </label>
+                      </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">Education Type</label>
+                    <select class="form-select " aria-label="Default select example">
+                        <option selected>Select Country</option>
+                        <option value="1">Post Graduate</option>
+                        <option value="2">Under Graduate</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <label class="form-label fw-bold" for="inputEmail">Address</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">Select Country</label>
+                    <select class="form-select " aria-label="Default select example">
+                        <option selected>Select-Country</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">Select State</label>
+                    <select class="form-select " aria-label="Default select example">
+                        <option selected>Select-State</option>
+                    </select>
+                </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" for="inputEmail">Select City</label>
+                            <select class="form-select " aria-label="Default select example">
+                                <option selected>Select-City</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="mb-2 border-bottom border-secondary ">
+            <h6 class="text-uppercase">Job Details</h6>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">Company Name</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter Company Name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">Experience</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter Experience">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="inputEmail">Salary</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter Salary">
+                </div>
+            </div>
+        </div>
+       
+        <div class=" d-flex justify-content-end mt-2">
+            <button type="button" class="btn btn-outline-secondary me-3 px-4 py-2">Reset</button>
+            <button type="button" class="btn btn-outline-primary px-4 py-2">Save</button>
+        </div>
+       
     </form>
 </div>

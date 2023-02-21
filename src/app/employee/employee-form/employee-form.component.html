@@ -7,21 +7,20 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="d-flex justify-content-center align-items-center ">
-                   
                     <label for="image-upload">
                         <div class=" position-relative">
                             <div class="profile-image w-120px h-120px d-flex justify-content-centern overflow-hidden rounded-circle ">
-                                <img src="./../../../assets/images/profile-image.png" alt="profile-icon" class="img-fluid image object-fit-cover ">
+                                <img src="./../../../assets/images/profile-image.png" alt="profile-icon" class="img-fluid image" *ngIf="!base64String">
+                                <img [src]="base64String" alt="profile-icon" class="img-fluid image  ">
                                
                              <div class="middle">
-                                 <div class="text text-nowrap text-dark">Upload Image</div>
+                                 <div class="text text-nowrap text-dark"*ngIf="!base64String" >Upload Image</div>
                                </div>
                          </div>
                          <img src="./../../../assets/images/plush-img.jpg" class="w-20px h-20px  position-absolute rounded-4 plush-image">
                         </div>
-                   
                 </label>
-                    <input type="file" class="d-none" id="image-upload">
+                    <input type="file" class="d-none" id="image-upload" (change)="selectImage($event)">
                   
                 </div>
             </div>

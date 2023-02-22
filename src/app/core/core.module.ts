@@ -20,7 +20,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
   ],
   exports:[
     HeaderComponent,
-    AsideComponent
+    AsideComponent,
   ],
   providers:[OverlayService]
 })

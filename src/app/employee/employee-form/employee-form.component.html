@@ -1,166 +1,193 @@
-<div class="bg-white h-100 w-50 position-absolute end-0">
-    <div class="d-flex justify-content-between align-items-center  bg-info px-3 py-2">
+<div class="bg-white h-100 w-25 position-absolute end-0">
+    <div class="d-flex justify-content-between align-items-center bg-info px-3 py-2">
         <h5 class="text-uppercase fw-bold">Employee Details</h5>
         <span class="bi bi-x-circle fs-2 text-primary" (click)="close()"></span>
     </div>
-    <form [formGroup]="employeeForm" class="p-3"  (ngSubmit)="saveEmployeeData()">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="d-flex justify-content-center align-items-center ">
-                    <label for="image-upload">
-                        <div class=" position-relative">
-                            <div class="profile-image w-120px h-120px d-flex justify-content-centern overflow-hidden rounded-circle ">
-                                <img src="./../../../assets/images/profile-image.png" alt="profile-icon" class="img-fluid image" *ngIf="!base64String">
-                                <img [src]="base64String" alt="profile-icon" class="img-fluid image  ">
-                               
-                             <div class="middle">
-                                 <div class="text text-nowrap text-dark"*ngIf="!base64String" >Upload Image</div>
-                               </div>
-                         </div>
-                         <img src="./../../../assets/images/plush-img.jpg" class="w-20px h-20px  position-absolute rounded-4 plush-image">
-                        </div>
-                </label>
-                    <input type="file" class="d-none" id="image-upload" (change)="selectImage($event)">
-                </div>
-            </div>
-        </div>
-        <div class="my-2 border-bottom border-secondary ">
-            <h6 class="text-uppercase">personal Details</h6>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail">FirstName</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter FirstName">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail">LastName</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter lastName">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail">DOB</label>
-                    <input type="date" class="form-control" id="inputEmail" placeholder="Enter FirstName">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <label class="form-label fw-bold" for="inputEmail">Gender</label>
-                <div class="d-flex">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                         Male
+    <form [formGroup]="employeeForm" class="p-3" (ngSubmit)="saveEmployeeData()">
+        <fieldset formGroupName="PersonalDetails">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <label for="image-upload">
+                            <div class="position-relative">
+                                <div
+                                    class="profile-image w-120px h-120px d-flex justify-content-centern overflow-hidden rounded-circle">
+                                    <img src="./../../../assets/images/profile-image.png" alt="profile-icon"
+                                        class="img-fluid image" *ngIf="!base64String" />
+                                    <img [src]="base64String" alt="profile-icon" class="img-fluid image" />
+
+                                    <div class="middle">
+                                        <div class="text text-nowrap text-dark" *ngIf="!base64String">
+                                            Upload Image
+                                        </div>
+                                    </div>
+                                </div>
+                                <img src="./../../../assets/images/plush-img.jpg"
+                                    class="w-20px h-20px position-absolute rounded-4 plush-image" />
+                            </div>
                         </label>
-                      </div>
-                      <div class="form-check ms-2">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                        Female
-                        </label>
-                      </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail">Education Type</label>
-                    <select class="form-select " aria-label="Default select example">
-                        <option selected disabled>Select Education</option>
-                        <option *ngFor="let education of educationType">
-                            {{education.education}}
-                        </option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <label class="form-label fw-bold" for="inputEmail">Address</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail">Select Country</label>
-                    <select class="form-select " aria-label="Default select example"  (change)="onCountryChange($event)">
-                        <option selected disabled>Select-Country</option>
-                        <option *ngFor="let country of countries" [value]="country.isoCode">
-                            {{country.name}}
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-6">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail" >Select State</label>
-                    <select class="form-select " aria-label="Default select example"  (change)="onStateChange($event)">
-                        <option selected disabled>Select-State</option>
-                        <option *ngFor="let state of state" [value]="state.isoCode">
-                            {{state.name}}
-                        </option>
-                    </select>
-                </div>
+                        <input type="file" class="d-none" id="image-upload" (change)="selectImage($event)" />
                     </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold" for="inputEmail">Select City</label>
-                            <select class="form-select " aria-label="Default select example">
-                                <option selected disabled>Select-City</option>
-                                <option *ngFor="let city of city" [value]="city">
-                                    {{city.name}}
-                                </option>
-                            </select>
+                </div>
+            </div>
+            <div class="my-2 border-bottom border-secondary">
+                <h6 class="text-uppercase">personal Details</h6>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="FirstName">FirstName</label>
+                        <input type="text" class="form-control" id="FirstName" placeholder="Enter FirstName"
+                        formControlName="firstname"
+                        [ngClass]="{'is-invalid':employeeForm.get('PersonalDetails.firstname')?.invalid && (employeeForm.controls['PersonalDetails.firstname']?.touched || employeeForm.controls['PersonalDetails.firstname']?.dirty)}"
+                           />
+                    </div>
+                    
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="LastName">LastName</label>
+                        <input type="email" class="form-control" id="LastName" placeholder="Enter lastName"
+                            formControlName="lastname" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="DOB">DOB</label>
+                        <input type="date" class="form-control" id="DOB" placeholder="Enter FirstName"
+                            formControlName="dob" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="form-label fw-bold" for="Gender">Gender</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" value="male" id="male"
+                                formControlName="gender" />
+                            <label class="form-check-label" for="male">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check ms-2">
+                            <input class="form-check-input" type="radio" name="gender" value="female" id="female"
+                                checked formControlName="gender" />
+                            <label class="form-check-label" for="female">
+                                Female
+                            </label>
                         </div>
                     </div>
                 </div>
-                
             </div>
-        </div>
-        <div class="mb-2 border-bottom border-secondary ">
-            <h6 class="text-uppercase">Job Details</h6>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail">Company Name</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter Company Name">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="Email">Email</label>
+                        <input type="email" class="form-control" id="Email" placeholder="Enter Email"
+                            formControlName="email" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="EducationType">EducationType</label>
+                        <select class="form-select" aria-label="Default select example" id="EducationType"
+                            formControlName="educationtype">
+                            <option selected disabled value="">Select Education</option>
+                            <option *ngFor="let education of educationType" [value]="education.education">
+                                {{ education.education }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail">Experience</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter Experience">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="form-label fw-bold" for="inputEmail">Address</label>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="inputEmail">Salary</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter Salary">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="SelectCountry">SelectCountry</label>
+                        <select class="form-select" aria-label="Default select example" id="SelectCountry"
+                            (change)="onCountryChange($event)" formControlName="country">
+                            <option selected disabled value="">Select-Country</option>
+                            <option *ngFor="let country of countries" [value]="country.isoCode">
+                                {{ country.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="SelectState">SelectState</label>
+                                <select class="form-select" aria-label="Default select example" id="SelectState"
+                                    (change)="onStateChange($event)" formControlName="state">
+                                    <option selected disabled value="">Select-State</option>
+                                    <option *ngFor="let state of state" [value]="state.isoCode">
+                                        {{ state.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="SelectCity">SelectCity</label>
+                                <select class="form-select" aria-label="Default select example" id="SelectCity"
+                                    formControlName="city">
+                                    <option selected disabled value="">Select-City</option>
+                                    <option *ngFor="let city of city" [value]="city.name">
+                                        {{ city.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-       
-        <div class=" d-flex justify-content-end mt-2">
-            <button type="button" class="btn btn-outline-secondary me-3 px-4 py-2">Reset</button>
-            <button type="button" class="btn btn-outline-primary px-4 py-2">Save</button>
-        </div>
-       
+        </fieldset>
+        <fieldset formGroupName="JobDetails">
+            <div class="mb-2 border-bottom border-secondary">
+                <h6 class="text-uppercase">Job Details</h6>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="CompanyName">CompanyName</label>
+                        <input type="email" class="form-control" id="CompanyName" placeholder="Enter Company Name"
+                            formControlName="Companyname" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="Experience">Experience</label>
+                        <input type="email" class="form-control" id="Experience" placeholder="Enter Experience"
+                            formControlName="Experience" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="Salary">Salary</label>
+                        <input type="email" class="form-control" id="Salary" placeholder="Enter Salary"
+                            formControlName="salary" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-2">
+                <button type="reset" class="btn btn-outline-secondary me-3 px-4 py-2">
+                    Reset
+                </button>
+                <button type="submit" class="btn btn-outline-primary px-4 py-2">
+                    Save
+                </button>
+            </div>
+        </fieldset>
     </form>
 </div>

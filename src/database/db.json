@@ -1,10 +1,42 @@
 {
   "employee": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "PersonalDetails": {
+        "firstname": "",
+        "lastname": "",
+        "dob": "",
+        "gender": "",
+        "educationtype": "",
+        "email": "",
+        "country": "",
+        "state": "",
+        "city": ""
+      },
+      "JobDetails": {
+        "Companyname": "",
+        "Experience": "",
+        "salary": ""
+      },
+      "id": 1
+    },
+    {
+      "PersonalDetails": {
+        "firstname": "",
+        "lastname": "",
+        "dob": "",
+        "gender": "",
+        "educationtype": "",
+        "email": "",
+        "country": "",
+        "state": "",
+        "city": ""
+      },
+      "JobDetails": {
+        "Companyname": "",
+        "Experience": "",
+        "salary": ""
+      },
+      "id": 2
     }
   ]
-  
 }

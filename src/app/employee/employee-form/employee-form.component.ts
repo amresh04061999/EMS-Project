@@ -27,17 +27,22 @@ export class EmployeeFormComponent implements OnInit {
   constructor(private closeOverlay: OverlayService,private fb:FormBuilder) {
 
    this.employeeForm=this.fb.group({
-    firstname:['',[Validators.required]],
-    lastname:['',[Validators.required]],
-    dob:['',[Validators.required]],
-    gender:['',[Validators.required]],
-    educationtype:['',[Validators.required]],
-    country:['',[Validators.required]],
-    state:['',[Validators.required]],
-    city:['',[Validators.required]],
-    Companyname:['',[Validators.required]],
-    Experience:['',[Validators.required]],
-    salry:['',[Validators.required]],
+    PersonalDetails:fb.group({
+      firstname:['',[Validators.required]],
+      lastname:['',[Validators.required]],
+      dob:['',[Validators.required]],
+      gender:['',[Validators.required]],
+      educationtype:['',[Validators.required]],
+      country:['',[Validators.required]],
+      state:['',[Validators.required]],
+      city:['',[Validators.required]],
+      ProfileImage:['',[Validators.required]]
+    }),
+    JobDetails:fb.group({
+      Companyname:['',[Validators.required]],
+      Experience:['',[Validators.required]],
+      salry:['',[Validators.required]],
+      })
     })
   }
   ngOnInit(): void {
@@ -54,12 +59,6 @@ public saveEmployeeData():void{
 
 
 }
-
-
-
-
-
-
 
 
   /**

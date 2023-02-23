@@ -21,6 +21,7 @@ export class EmployeeFormComponent implements OnInit {
   public city: any = [];
   public isSubmited:boolean;
   public checkdata:boolean =false;
+  public msg:string;
   public educationType = [
     {
       id: 1, education: "Post Graduate",
@@ -34,26 +35,26 @@ export class EmployeeFormComponent implements OnInit {
     private fb: FormBuilder,) {
     this.employeeForm = this.fb.group({
       PersonalDetails: this.fb.group({
-        firstname: ['', [Validators.required]],
-        lastname: ['', [Validators.required]],
+        firstname: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(40),Validators.pattern('^[a-zA-Z \-\']+')]],
+        lastname: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(40),Validators.pattern('^[a-zA-Z \-\']+')]],
         dob: ['', [Validators.required]],
-        gender: ['', [Validators.required]],
+        gender: ['male', [Validators.required]],
         educationtype: ['', [Validators.required]],
-        email: ['', [Validators.required]],
+        email: ['', [Validators.required,Validators.pattern('^[a-z0-9]([a-z0-9\-\.]*)+@(([a-z0-9-]{2,})+\.)+[a-z\-]{2,4}$')]],
         country: ['', [Validators.required]],
         state: ['', [Validators.required]],
         city: ['', [Validators.required]],
         ProfileImage: ['']
       }),
       JobDetails: this.fb.group({
-        Companyname: ['', [Validators.required]],
-        Experience: ['', [Validators.required]],
-        salary: ['', [Validators.required]],
+        companyname: ['', [Validators.required]],
+        experience: ['', [Validators.required,Validators.pattern('^[0-9]*$')]],
+        salary: ['', [Validators.required,Validators.pattern('^[0-9]*$')]],
       }),
 
     })
     this.isSubmited=false;
-    console.log(this.employeeForm);
+      this.msg=""
     
   }
   ngOnInit(): void {
@@ -61,9 +62,7 @@ export class EmployeeFormComponent implements OnInit {
     this.countries = Country.getAllCountries();
     this.states = State.getAllStates();
     this.cities = City.getAllCities();
-    // console.log(this.countries);
-    // console.log(this.states);
-    
+
   }
   // Save Employee data
   /**
@@ -71,6 +70,15 @@ export class EmployeeFormComponent implements OnInit {
      * @param event 
      */
   public selectImage(event: any): void {
+     /**
+     *show message validation
+     */
+     let imageType = event.target.files[0]
+     if (!imageType.name.match('\.(jpg|jpeg|png|heif)$')) {
+       this.msg = "Please upload a valid file format (Supported file  formats: .jpg, .png, .jpeg, .heif).";
+       
+       return
+     }
     if (event) {
       this.imagefile = event.target.files[0]
     }
@@ -78,15 +86,17 @@ export class EmployeeFormComponent implements OnInit {
     reader.readAsDataURL(this.imagefile);
     reader.onload = () => {
       this.base64String = String(reader.result)
+      this.msg=''
     }
   }
 
   //save employee
   public saveEmployeeData() {
-       this.isSubmited=true
-    if(this.employeeForm.invalid){
+    this.isSubmited=true
+    if(this.employeeForm.valid){
       this.employeeForm.get('PersonalDetails')?.get('ProfileImage')?.setValue(this.base64String)
       this._httpSevices.addemployee(this.employeeForm.value).subscribe((res) => {
+        console.log(res);
         if(res){
           this._closeOverlay.close()
         }
@@ -101,22 +111,6 @@ export class EmployeeFormComponent implements OnInit {
   public onCountryChange(event: any): void {
     let eventString: string = event.target.value.toUpperCase()
       this.state = this.states.filter((res: any) => eventString === res.countryCode);
-    // this.states.filter((res:any=[])=>{ 
-    //  const c = res.isoCode.includes(eventString);
-    //   if(c){
-    //   const b=res.name
-    //    console.log(b);
-       
-    //   }
-//   if(c){
-// const b= res.name;
-//       console.log(b);
-//      event.target.value=b
-//     }
-  // })
-    // console.log(eventString);
-    
-    // console.log(eventString);
     
 
   }
@@ -134,10 +128,4 @@ export class EmployeeFormComponent implements OnInit {
   }
   // validation function
   
-  get PersonalDetail() {
-    return this.employeeForm.controls;      
-  }
-  get JobDetail() {
-    return this.employeeForm.controls;
-  }
 }

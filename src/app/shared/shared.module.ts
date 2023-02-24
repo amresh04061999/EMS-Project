@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { OverlayService } from '../core/services/overlay.service';
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OverlayModule,
+    FormsModule
+
     
   ],exports:[
-    HttpClientModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    OverlayModule,
+    FormsModule
+  ],
+  providers:[OverlayService]
 })
 export class SharedModule { }

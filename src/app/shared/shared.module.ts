@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { OverlayService } from '../core/services/overlay.service';
+import { MergeFirstnameLastname } from '../employee/Services/mergeFirstnameLastname.adapter';
 @NgModule({
   declarations: [],
   imports: [
@@ -17,6 +18,6 @@ import { OverlayService } from '../core/services/overlay.service';
     OverlayModule,
     FormsModule
   ],
-  providers:[OverlayService]
+  providers:[OverlayService,MergeFirstnameLastname]
 })
 export class SharedModule { }

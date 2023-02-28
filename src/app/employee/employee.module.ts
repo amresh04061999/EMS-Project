@@ -8,11 +8,13 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeComponent } from './employee.component';
 import { CommunicationService } from './Services/communication.service';
 import { HttpServiceService } from './Services/http-service.service';
+import { DeleteConfirmBoxComponent } from './delete-confirm-box/delete-confirm-box.component';
 @NgModule({
   declarations: [
     EmployeeComponent,
     EmployeeFormComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    DeleteConfirmBoxComponent
   ],
   imports: [
     CommonModule,

@@ -3,11 +3,12 @@ import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class CommunicationService {
-  public EmployeeData:Subject<any>;
-  // public EmployeeData$:Observable<any>;
+  public addEmployeeData:Subject<any>;
+  public editEmployeeData:Subject<any>;
+  public statusDelete:Subject<boolean>
   constructor() {
-    this.EmployeeData=new Subject();
-    // this.EmployeeData$=new Observable();
-    // this.EmployeeData$=this.EmployeeData.asObservable()
+    this.addEmployeeData=new Subject();
+    this.editEmployeeData=new Subject();
+    this.statusDelete=new Subject()
    }
 }

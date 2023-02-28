@@ -1,6 +1,9 @@
 export class Employee {
-    public PersonalDetails?:PersonalDetails[];
-    public JobDetails?:JobDetails[]
+        public  id!:number
+        public PersonalDetails?:PersonalDetails;
+        public JobDetails?:JobDetails
+        public fullName!: string
+    
 }
 export class PersonalDetails{
     public firstname:string;

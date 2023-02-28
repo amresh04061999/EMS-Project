@@ -4,6 +4,7 @@ import { City, Country, State } from 'country-state-city';
 import { OverlayService } from 'src/app/core/services/overlay.service';
 import { CommunicationService } from '../Services/communication.service';
 import { HttpServiceService } from '../Services/http-service.service';
+import { Employee } from './Employee.model';
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -33,10 +34,11 @@ export class EmployeeFormComponent implements OnInit {
   ]
   constructor(private _closeOverlay: OverlayService,
     private _httpSevices: HttpServiceService,
-    private _communicationServices:CommunicationService,
+    private _communicationServices: CommunicationService,
     private fb: FormBuilder,) {
-      // Multiple Form Group
+    // Multiple Form Group
     this.employeeForm = this.fb.group({
+      id: [''],
       PersonalDetails: this.fb.group({
         firstname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40), Validators.pattern('^[a-zA-Z \-\']+')]],
         lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40), Validators.pattern('^[a-zA-Z \-\']+')]],
@@ -102,15 +104,25 @@ export class EmployeeFormComponent implements OnInit {
     this.isSubmited = true
     if (this.employeeForm.valid) {
       this.employeeForm.get('PersonalDetails')?.get('ProfileImage')?.setValue(this.base64String)
-      this._httpSevices.addemployee(this.employeeForm.value).subscribe((res) => {
-        if (res) {
+      if (this.employeeForm.value.id) {
+        // edit employee
+        this._httpSevices.editemployee(this.employeeForm.value, this.employeeForm.value.id).subscribe((res: Employee) => {
           this._closeOverlay.close();
-          this._communicationServices.EmployeeData.next(res)
-        }
-      })
+          this._communicationServices.editEmployeeData.next(res)
+        })
+      } else {
+        // add employee
+        this._httpSevices.addemployee(this.employeeForm.value).subscribe((res: Employee) => {
+          if (res) {
+            this._closeOverlay.close();
+            this._communicationServices.addEmployeeData.next(res)
+          }
+        })
+      }
+
+
     }
   }
-
 
   // Dependency   
   /**

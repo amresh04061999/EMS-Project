@@ -1,5 +1,5 @@
 <!-- main-wrapper -->
-<main class="pt-2 h-100">
+<main class="pt-2 h-100 d-flex flex-column">
     <!-- search button section -->
     <div class="d-flex justify-content-between align-items-center">
         <div class="position-relative d-flex">
@@ -57,23 +57,23 @@
         </div>
     </div>
     <!-- Employee list card -->
-    <div class="h-100 overflow-auto">
+    <div class="flex-grow-1 overflow-auto">
     <section class="mt-4">
         <div class="row mb-5" >
-            <div class="col-lg-6" *ngFor="let item of EmployeeData">
+            <div class="col-lg-6" *ngFor="let item of employeeList">
                 <div class="card p-2 mt-2">
                     <div class="d-flex align-items-center">
                         <div class="profile-image  w-150px h-200px d-flex justify-content-center overflow-hidden ">
-                            <img [src]="item.PersonalDetails.ProfileImage" alt="profile image"
+                            <img [src]="item.PersonalDetails!.ProfileImage" alt="profile image"
                                 class="h-100 w-auto  image-profile ">
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center ">
-                                <h5 class="ms-1 text-uppercase">{{item.PersonalDetails.firstname}} {{item.PersonalDetails.lastname}}</h5>
+                                <h5 class="ms-1 text-uppercase">{{item.PersonalDetails!.firstname}} {{item.PersonalDetails!.lastname}}</h5>
                                 <div>
-                                    <button class="btn btn-warning bi bi-eye me-2"> View</button>
-                                    <button class="btn btn-success bi bi-pencil-square me-2"></button>
-                                    <button class="btn btn-danger bi bi-trash-fill"></button>
+                                    <button type="button"  class="btn btn-warning bi bi-eye me-2" > View</button>
+                                    <button class="btn btn-success bi bi-pencil-square me-2" (click)="editEmployee(item)"></button>
+                                    <button class="btn btn-danger bi bi-trash-fill"(click)="deleteEmployee(item.id)"></button>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-around">
@@ -86,15 +86,15 @@
                                     <tbody>
                                         <tr>
                                             <th>Birthdate</th>
-                                            <td>{{item.PersonalDetails.dob}}</td>
+                                            <td>{{item.PersonalDetails!.dob}}</td>
                                         </tr>
                                         <tr>
                                             <th>Gender</th>
-                                            <td>{{item.PersonalDetails.gender}}</td>
+                                            <td>{{item.PersonalDetails!.gender}}</td>
                                         </tr>
                                         <tr>
                                             <th>Educaton</th>
-                                            <td> {{item.PersonalDetails.educationtype}}</td>
+                                            <td> {{item.PersonalDetails!.educationtype}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -107,18 +107,18 @@
                                     <tbody>
                                         <tr>
                                             <th>Company </th>
-                                            <td>{{item.JobDetails
+                                            <td>{{item.JobDetails!
                                                 .companyname}}</td>
                                         </tr>
                                         <tr>
                                             <th>Experience</th>
-                                            <td>{{item.JobDetails
+                                            <td>{{item.JobDetails!
                                                 .experience}}</td>
 
                                         </tr>
                                         <tr>
                                             <th>Salary</th>
-                                            <td>{{item.JobDetails
+                                            <td>{{item.JobDetails!
                                                 .salary}}</td>
                                         </tr>
                                     </tbody>

@@ -1,6 +1,6 @@
 import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OverlayService } from 'src/app/core/services/overlay.service';
 import { DeleteConfirmBoxComponent } from '../delete-confirm-box/delete-confirm-box.component';
 import { EmployeeFormComponent } from '../employee-form/employee-form.component';
@@ -13,13 +13,14 @@ import { HttpServiceService } from '../Services/http-service.service';
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss']
 })
-export class EmployeeListComponent implements OnInit ,OnDestroy  {
-  public employeeList:Employee[]
+export class EmployeeListComponent implements OnInit {
+  public employeeList:any
 public confirm:boolean;
   public id!:number;
   constructor(private _openOverlay: OverlayService,
     private _HttpServices: HttpServiceService,
     private _communicationServices:CommunicationService,
+    private router:Router
   ) {
     this.employeeList=[];
    this.confirm=false;
@@ -76,10 +77,14 @@ public confirm:boolean;
    * @param item Edit Employee
    */
   editEmployee(item:Employee){
+   const image =item.PersonalDetails?.ProfileImage;
    const overlayInstance= this._openOverlay.open(EmployeeFormComponent);
    overlayInstance.instance.employeeForm.patchValue(item)
+   overlayInstance.instance.base64String=image
   }
-   ngOnDestroy(): void {
 
+ public employeeDetails(item:any):void{
+   this.router.navigate(['employee/employee-details',item.id])
   }
+   
 }

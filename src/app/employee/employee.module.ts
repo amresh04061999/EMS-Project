@@ -9,12 +9,14 @@ import { EmployeeComponent } from './employee.component';
 import { CommunicationService } from './Services/communication.service';
 import { HttpServiceService } from './Services/http-service.service';
 import { DeleteConfirmBoxComponent } from './delete-confirm-box/delete-confirm-box.component';
+import { EmployeeDetailsViewComponent } from './employee-details-view/employee-details-view.component';
 @NgModule({
   declarations: [
     EmployeeComponent,
     EmployeeFormComponent,
     EmployeeListComponent,
-    DeleteConfirmBoxComponent
+    DeleteConfirmBoxComponent,
+    EmployeeDetailsViewComponent
   ],
   imports: [
     CommonModule,

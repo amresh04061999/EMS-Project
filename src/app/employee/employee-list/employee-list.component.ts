@@ -14,23 +14,26 @@ import { HttpServiceService } from '../Services/http-service.service';
   styleUrls: ['./employee-list.component.scss']
 })
 export class EmployeeListComponent implements OnInit {
-  public employeeList:any
-public confirm:boolean;
+  public employeeList:any;
+  public gander:any
+  public confirm:boolean;
   public id!:number;
+  public search!:string;
   constructor(private _openOverlay: OverlayService,
     private _HttpServices: HttpServiceService,
     private _communicationServices:CommunicationService,
     private router:Router
   ) {
-    this.employeeList=[];
+
    this.confirm=false;
     
   }
  
-
   ngOnInit(): void {
   //  Get Employee Data
   this.getEmployeeDetails()  
+  // getGander
+  this.getGander()
 
   // employee data push in employee list using subject
   this._communicationServices.addEmployeeData.subscribe((res)=>{
@@ -82,9 +85,20 @@ public confirm:boolean;
    overlayInstance.instance.employeeForm.patchValue(item)
    overlayInstance.instance.base64String=image
   }
-
+/**
+ * get employee Details
+ * @param item 
+ */
  public employeeDetails(item:any):void{
    this.router.navigate(['employee/employee-details',item.id])
   }
-   
+  /**
+   * get gander
+   */
+ public getGander():void{
+   this._HttpServices.getGander().subscribe((res)=>{
+     this.gander=res
+   })
+   }
+
 }

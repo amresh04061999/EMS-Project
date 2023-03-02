@@ -47,9 +47,17 @@ export class HttpServiceService {
     return this._httpServices.put<Employee>(`${this.baseUrl}employee/`+ id,employee)
 
   }
+  /**
+   * getemployee by id
+   * @param id 
+   * @returns 
+   */
   getEmployeById(id:number):Observable<any>{
     return this._httpServices.get<any>(`${this.baseUrl}employee/`+ id)
 
+  }
+   getGander():Observable<any>{
+   return this._httpServices.get(`${this.baseUrl}gander`)
   }
 }
 

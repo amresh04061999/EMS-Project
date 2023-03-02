@@ -57,7 +57,7 @@ export class HttpServiceService {
 
   }
    getGander():Observable<any>{
-   return this._httpServices.get(`${this.baseUrl}gander`)
+   return this._httpServices.get(`${this.baseUrl}gender`)
   }
 }
 

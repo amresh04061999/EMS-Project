@@ -48,10 +48,10 @@
                 <span class="bi bi-filter text-primary fs-4"></span>
                 <span class="text-secondary text-nowrap px-1">Short By</span>
             </div>
-            <select class="form-select" aria-label="Default select example" >
-                <option selected value="">Gender</option>
-                <option *ngFor="let gander of gander">
-                 {{gander.name}}
+            <select class="form-select" aria-label="Default select example" (change)="shortingByGender($event)">
+                <option selected value="" disabled>Gender</option>
+                <option *ngFor="let gender of gender" >
+                 {{gender.name}}
                 </option>
                
             </select>

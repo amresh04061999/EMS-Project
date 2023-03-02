@@ -15,7 +15,8 @@ import { HttpServiceService } from '../Services/http-service.service';
 })
 export class EmployeeListComponent implements OnInit {
   public employeeList:any;
-  public gander:any
+  public sortList:any
+  public gender:any
   public confirm:boolean;
   public id!:number;
   public search!:string;
@@ -33,7 +34,7 @@ export class EmployeeListComponent implements OnInit {
   //  Get Employee Data
   this.getEmployeeDetails()  
   // getGander
-  this.getGander()
+  this.getGender()
 
   // employee data push in employee list using subject
   this._communicationServices.addEmployeeData.subscribe((res)=>{
@@ -65,7 +66,8 @@ export class EmployeeListComponent implements OnInit {
   public getEmployeeDetails(): void {
     this._HttpServices.getEmployee().subscribe((res) => {
       if (res) {
-        this.employeeList =res
+        this.sortList =res
+        this.employeeList=this.sortList
       }
     })
   }
@@ -95,10 +97,18 @@ export class EmployeeListComponent implements OnInit {
   /**
    * get gander
    */
- public getGander():void{
+ public getGender():void{
    this._HttpServices.getGander().subscribe((res)=>{
-     this.gander=res
+     this.gender=res
    })
+   }
+  //  shortng by gender
+    public shortingByGender(event:any){
+    const gender=(event.target.value).toLowerCase()
+    this.employeeList=this.sortList.filter((item:any)=> gender == item.PersonalDetails.gender
+  );
+ 
+      
    }
 
 }

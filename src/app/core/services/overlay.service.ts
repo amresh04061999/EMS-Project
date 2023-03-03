@@ -18,8 +18,8 @@ export class OverlayService {
     // Create the overlay with customizable options
     this.overlayRef = this.overlay.create({
       positionStrategy,
-      backdropClass: 'overlay-backdrop',
-      hasBackdrop: true,
+      backdropClass:'overlay-backdrop',
+       hasBackdrop: true,
     });
     const portal = new ComponentPortal(component);
     const instance = this.overlayRef.attach(portal);

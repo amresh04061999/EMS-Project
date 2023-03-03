@@ -12,7 +12,4 @@ export class AsideComponent {
   constructor(private overlayService:OverlayService){
 
   }
-  public addEmployee():void{
-        this.overlayService.open(EmployeeFormComponent)
-  }
 }

@@ -23,7 +23,7 @@ import { EmployeeDetailsViewComponent } from './employee-details-view/employee-d
     EmployeeRoutingModule,
     SharedModule
   ],
-  bootstrap: [EmployeeFormComponent],
+  exports:[EmployeeFormComponent],
   providers: [HttpServiceService,CommunicationService],
 })
 export class EmployeeModule { }

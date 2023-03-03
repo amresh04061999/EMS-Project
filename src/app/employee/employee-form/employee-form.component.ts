@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { City, Country, State } from 'country-state-city';
 import { OverlayService } from 'src/app/core/services/overlay.service';
 import { CommunicationService } from '../Services/communication.service';
 import { HttpServiceService } from '../Services/http-service.service';
@@ -60,15 +59,17 @@ export class EmployeeFormComponent implements OnInit {
     this.isSubmited = false;
     this.msg = ""
   }
+
   ngOnInit(): void {
-    // get Country
-    this.countries = Country.getAllCountries();
-    // get state
-    this.states = State.getAllStates();
-    // get city
-    this.cities = City.getAllCities();
+    // get countries
+    this.getCountries();
+    // get states
+    this.getStates();
+    // get cities
+    this.getCities();
 
   }
+
   // Save Employee data
   /**
      * images Select
@@ -123,6 +124,38 @@ export class EmployeeFormComponent implements OnInit {
 
     }
   }
+/**
+ * getCountries
+ */
+  public getCountries():void{
+   this._httpSevices.getCountry().subscribe((res:any)=>{
+    this.countries=res
+     
+   })
+  }
+  /**
+   * getStates
+   */
+  public getStates():void{
+    this._httpSevices.getState().subscribe((res:any)=>{
+      if(res){
+        this.state=res 
+      }
+     
+      
+    })
+  }
+  /**
+   * getcities
+   */
+  public getCities():void{
+    this._httpSevices.getCity().subscribe((res:any)=>{
+    if(res){
+      this.city=res
+    }
+    })
+    
+  }
 
   // Dependency   
   /**
@@ -130,8 +163,9 @@ export class EmployeeFormComponent implements OnInit {
    * @param event 
    */
   public onCountryChange(event: any): void {
-    let eventString: string = event.target.value.toUpperCase()
-    this.state = this.states.filter((res: any) => eventString === res.countryCode);
+    let countryId= event.target.value
+    console.log();
+    this.states = this.state.filter((item: any) =>countryId == item.countryId);
   }
 
   /**
@@ -139,8 +173,11 @@ export class EmployeeFormComponent implements OnInit {
    * @param event 
    */
   public onStateChange(event: any): void {
-    let eventString = event.target.value;
-    this.city = this.cities.filter((res: any) => eventString === res.stateCode);
+    let stateId = event.target.value;
+    console.log(stateId);
+    
+   this.cities= this.city.filter((item: any) =>stateId == item.stateId);
+    
   }
 
   // close overlay

@@ -5,10 +5,8 @@
         <div class="position-relative d-flex">
             <label class="bi bi-search position-absolute top-50 ms-4 translate-middle text-secondary"
                 for="search"></label>
-            <input type="text" class="py-1 px-5 form-control rounded-0 rounded-start" id="search" [(ngModel)]="search" />
-            <button class="btn btn-primary p-0 py-1 rounded-0 rounded-end px-4">
-                Search
-            </button>
+            <input type="text" class="py-1 px-5 form-control rounded-0 rounded-start"  id="search" [(ngModel)]="search"  placeholder="Search"/>
+           
         </div>
         <button class="btn btn-primary p-0 d-flex align-items-center">
             <span class="bi bi-plus fs-5 px-1"></span><span class="pe-2" (click)="openModel()">Add Employee</span>
@@ -23,23 +21,23 @@
                 <span class="bi bi-funnel text-primary fs-5"></span>
                 <span class="text-secondary text-nowrap px-1">Filter By</span>
             </div>
-            <select class="form-select me-2" aria-label="Default select example">
-                <option selected>Select Country</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="form-select me-2" aria-label="Default select example" (change)="onCountryChange($event)">
+                <option selected disabled value="">Select Country</option>
+                <option *ngFor="let country of countries" [value]="country.countryId">
+                    {{country.countryName}}
+                </option>
             </select>
-            <select class="form-select me-2" aria-label="Default select example">
-                <option selected>Select State</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="form-select me-2" aria-label="Default select example" (change)="onStateChange($event)">
+                <option selected disabled value="">Select State</option>
+                <option *ngFor="let state of states" [value]="state.stateId">
+                    {{state.stateName}}
+                </option>
             </select>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Select City</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="form-select" aria-label="Default select example" (change)="onCityChange($event)">
+                <option selected disabled value="">Select City</option>
+                <option *ngFor="let city of cities" [value]="city.id">
+                    {{city.cityName}}
+                </option>
             </select>
         </div>
         <!-- Shorting -->
@@ -72,7 +70,7 @@
                             <div class="d-flex justify-content-between align-items-center ">
                                 <h5 class="ms-1 text-uppercase">{{item.PersonalDetails.firstname}} {{item.PersonalDetails.lastname}}</h5>
                                 <div>
-                                    <button type="button"  class="btn btn-warning bi bi-eye me-2" (click)="employeeDetails(item)"> View</button>
+                                    <button type="button"  class="btn btn-warning bi bi-eye me-2" (click)="employeeDetails(item)"></button>
                                     <button class="btn btn-success bi bi-pencil-square me-2" (click)="editEmployee(item)"></button>
                                     <button class="btn btn-danger bi bi-trash-fill"(click)="deleteEmployee(item.id)"></button>
                                 </div>
@@ -124,11 +122,17 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                
                             </div>
                         </div>
                     </div>
 
                 </div>
+              
+            </div>
+           
+            <div class="d-flex justify-content-center mt-2" [ngClass]="(employeeList?.length <= 0 )? 'd-block' : 'd-none'" >
+                <span class="text-secondary fs-2">No Record Found</span>
             </div>
         </div>
     </section>

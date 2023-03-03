@@ -16,10 +16,10 @@
                             <label for="image-upload">
                                 <div class="position-relative">
                                     <div
-                                        class="profile-image w-120px h-120px d-flex justify-content-centern overflow-hidden rounded-circle">
+                                        class="profile-image w-120px h-120px d-flex justify-content-center overflow-hidden rounded-circle">
                                         <img src="./../../../assets/images/profile-image.png" alt="profile-icon"
-                                            class="img-fluid image" *ngIf="!base64String" />
-                                        <img [src]="base64String" alt="profile-icon" class="img-fluid image" />
+                                            class="w-100 h-auto" *ngIf="!base64String" />
+                                        <img [src]="base64String" alt="profile-icon" class="w-auto h-100 object-fit-cover" />
 
                                         <div class="middle">
                                             <div class="text text-nowrap text-dark" *ngIf="!base64String">
@@ -261,8 +261,8 @@
                     employeeForm.get('PersonalDetails.country')?.touched
                 }">
                                 <option selected disabled value="">Select-Country</option>
-                                <option *ngFor="let country of countries" [value]="country.isoCode">
-                                    {{ country.name }}
+                                <option *ngFor="let country of countries" [value]="country.countryId">
+                                    {{ country.countryName }}
                                 </option>
                             </select>
                             <span *ngIf="
@@ -296,8 +296,8 @@
                         employeeForm.get('PersonalDetails.state')?.touched
                     }">
                                         <option selected disabled value="">Select-State</option>
-                                        <option *ngFor="let state of state" [value]="state.isoCode">
-                                            {{ state.name }}
+                                        <option *ngFor="let state of states" [value]="state.stateId">
+                                            {{ state.stateName }}
                                         </option>
                                     </select>
                                     <span *ngIf="
@@ -328,8 +328,8 @@
                         employeeForm.get('PersonalDetails.city')?.touched
                     }">
                                         <option selected disabled value="">Select-City</option>
-                                        <option *ngFor="let city of city" [value]="city.name">
-                                            {{ city.name }}
+                                        <option *ngFor="let city of cities" [value]="city.id">
+                                            {{ city.cityName }}
                                         </option>
                                     </select>
                                     <span *ngIf="

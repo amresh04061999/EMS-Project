@@ -7,12 +7,11 @@ import { MergeFirstnameLastname } from './mergeFirstnameLastname.adapter';
 
 @Injectable()
 export class HttpServiceService {
-  private baseUrl:any
+  private baseUrl:any;
   constructor(private _httpServices:HttpClient,
     private mergeFirstnameLastname:MergeFirstnameLastname) {
        this.baseUrl=environment.baseUrl;
    }
-
 /**
  * Add Employee
  * @param employee 
@@ -56,8 +55,31 @@ export class HttpServiceService {
     return this._httpServices.get<any>(`${this.baseUrl}employee/`+ id)
 
   }
+  /**
+   * GetGendar
+   * @returns 
+   */
    getGander():Observable<any>{
    return this._httpServices.get(`${this.baseUrl}gender`)
+  }
+  /**
+   * GetCountry
+   * @returns 
+   */
+  getCountry():Observable<any>{
+    return  this._httpServices.get(`${this.baseUrl}country`)
+  }/**
+   * GetState
+   * @returns 
+   */
+  getState():Observable<any>{
+    return  this._httpServices.get(`${this.baseUrl}state`)
+  }/**
+   * GetCity
+   * @returns 
+   */
+  getCity():Observable<any>{
+    return  this._httpServices.get(`${this.baseUrl}city`)
   }
 }
 

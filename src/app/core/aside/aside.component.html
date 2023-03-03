@@ -8,12 +8,12 @@
     <ul class="nav">
       <li class="nav-item p-3">
         <a href="javascript:void(0)" class="nav-link">
-          <span class="bi bi-list fs-4"></span
+          <span class="bi bi-list fs-4" (click)="flag = !flag"></span
         ></a>
       </li>
       <li class="nav-item p-3">
         <a class="nav-link">
-          <span class="bi bi-people fs-4" (click)="flag = !flag"></span
+          <span class="bi bi-people fs-4" ></span
         ></a>
       </li>
       <li class="nav-item p-3">
@@ -48,7 +48,7 @@
     <li class="nav-item p-3">
       <a href="javascript:void(0)" class="nav-link d-flex align-items-center">
         <span class="bi bi-plus-square fs-6 pe-3"></span>
-        <span class="fs-6 text-nowrap">Add New employee</span>
+        <span class="fs-6 text-nowrap" (click)="addEmployee()">Add New employee</span>
     </a>
     </li>
     <li class="nav-item p-3">
